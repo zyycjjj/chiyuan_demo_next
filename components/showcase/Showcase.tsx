@@ -2,12 +2,14 @@
 
 import { motion } from 'framer-motion'
 import { VolumeX } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 
 export function Showcase() {
   const [mutedStates, setMutedStates] = useState([true, true, true, true, true, true])
+  const [visibleIndices, setVisibleIndices] = useState<number[]>([])
+  const containerRefs = useRef<(HTMLDivElement | null)[]>([])
 
   const toggleMute = (index: number) => {
     setMutedStates(prev => {
@@ -16,6 +18,26 @@ export function Showcase() {
       return newStates
     })
   }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const index = Number(entry.target.getAttribute('data-index'))
+          if (entry.isIntersecting && !visibleIndices.includes(index)) {
+            setVisibleIndices(prev => [...prev, index])
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    containerRefs.current.forEach((container) => {
+      if (container) observer.observe(container)
+    })
+
+    return () => observer.disconnect()
+  }, [visibleIndices])
 
   const showcaseItems = [
     {
@@ -83,19 +105,29 @@ export function Showcase() {
               transition={{ delay: index * 0.1 }}
               className="group relative"
             >
-              <div className="relative rounded-2xl overflow-hidden border border-blue-500/20 bg-zinc-900">
+              <div
+                ref={(el) => { containerRefs.current[index] = el }}
+                data-index={index}
+                className="relative rounded-2xl overflow-hidden border border-blue-500/20 bg-zinc-900"
+              >
                 <div className="aspect-video bg-zinc-800 relative">
-                  <video
-                    loop
-                    autoPlay
-                    playsInline
-                    muted={mutedStates[index]}
-                    preload="metadata"
-                    className="w-full h-full object-cover"
-                  >
-                    <source src={item.video} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                  {visibleIndices.includes(index) ? (
+                    <video
+                      loop
+                      autoPlay
+                      playsInline
+                      muted={mutedStates[index]}
+                      preload="metadata"
+                      className="w-full h-full object-cover"
+                    >
+                      <source src={item.video} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  ) : (
+                    <div className="w-full h-full bg-zinc-800 flex items-center justify-center">
+                      <div className="text-gray-600">Loading...</div>
+                    </div>
+                  )}
                   <button
                     onClick={() => toggleMute(index)}
                     className="absolute top-3 right-3 bg-black/50 backdrop-blur-sm hover:bg-black/70 text-white p-2 rounded-lg transition-all duration-200 hover:scale-105"

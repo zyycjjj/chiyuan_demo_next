@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ChevronDown, Upload, VolumeX, Sparkles } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Container } from '../ui/Container'
 
 export function Hero() {
@@ -11,6 +11,27 @@ export function Hero() {
   const [aspectRatio, setAspectRatio] = useState('16:9')
   const [duration, setDuration] = useState('10s')
   const [isMuted, setIsMuted] = useState(true)
+  const [videoVisible, setVideoVisible] = useState(false)
+  const videoContainerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVideoVisible(true)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    if (videoContainerRef.current) {
+      observer.observe(videoContainerRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <section className="relative pt-20 md:pt-24 pb-20 overflow-hidden">
@@ -197,20 +218,29 @@ export function Hero() {
           >
             <div className="relative bg-zinc-900/90 backdrop-blur-md rounded-3xl p-5 shadow-2xl border border-blue-500/20 flex-1 flex flex-col">
               <div className="relative w-full h-full flex">
-                <div className="relative w-full h-full bg-gradient-to-br from-slate-800 via-blue-950/30 to-slate-800 rounded-2xl overflow-hidden">
+                <div
+                  ref={videoContainerRef}
+                  className="relative w-full h-full bg-gradient-to-br from-slate-800 via-blue-950/30 to-slate-800 rounded-2xl overflow-hidden"
+                >
                   <div className="relative w-full h-full flex flex-col">
                     <div className="relative flex-1 min-h-0">
-                      <video
-                        loop
-                        autoPlay
-                        playsInline
-                        muted={isMuted}
-                        preload="metadata"
-                        className="w-full h-full object-contain"
-                      >
-                        <source src="/demo1.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
+                      {videoVisible ? (
+                        <video
+                          loop
+                          autoPlay
+                          playsInline
+                          muted={isMuted}
+                          preload="metadata"
+                          className="w-full h-full object-contain"
+                        >
+                          <source src="/demo1.mp4" type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                      ) : (
+                        <div className="w-full h-full bg-zinc-800 flex items-center justify-center">
+                          <div className="text-gray-600">Loading...</div>
+                        </div>
+                      )}
                       <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-2">
                         <div className="text-white text-sm font-bold">Sora2 demo reel</div>
                       </div>
