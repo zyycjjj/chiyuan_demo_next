@@ -42,37 +42,37 @@ export function Showcase() {
   const showcaseItems = [
     {
       id: 1,
-      video: '/demo1.mp4',
+      video: 'https://zydemo-1257236742.cos.ap-beijing.myqcloud.com/demo1.mp4',
       title: 'Brands & eCommerce',
       description: 'Product highlights, launch teasers, and how-it-works clips'
     },
     {
       id: 2,
-      video: '/demo2.mp4',
+      video: 'https://zydemo-1257236742.cos.ap-beijing.myqcloud.com/demo2.mp4',
       title: 'Social & Creators',
       description: 'Daily Shorts/Reels with a cohesive story world'
     },
     {
       id: 3,
-      video: '/demo3.mp4',
+      video: 'https://zydemo-1257236742.cos.ap-beijing.myqcloud.com/demo3.mp4',
       title: 'Education & Training',
       description: 'Course explainers, lab simulations, and process walk-throughs'
     },
     {
       id: 4,
-      video: '/demo1.mp4',
+      video: 'https://zydemo-1257236742.cos.ap-beijing.myqcloud.com/demo4.mp4',
       title: 'Product & Engineering',
       description: 'App flows, hardware demos, and concept simulations'
     },
     {
       id: 5,
-      video: '/demo2.mp4',
+      video: 'https://zydemo-1257236742.cos.ap-beijing.myqcloud.com/demo5.mp4',
       title: 'Pre-viz for film',
       description: 'Shot exploration, lighting tests, and camera planning'
     },
     {
       id: 6,
-      video: '/demo3.mp4',
+      video: 'https://zydemo-1257236742.cos.ap-beijing.myqcloud.com/demo6.mp4',
       title: 'Cinematic Product Reel',
       description: 'Professional product showcase with synchronized audio'
     }

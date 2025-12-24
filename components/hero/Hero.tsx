@@ -233,7 +233,7 @@ export function Hero() {
                           preload="metadata"
                           className="w-full h-full object-contain"
                         >
-                          <source src="/demo1.mp4" type="video/mp4" />
+                          <source src="https://zydemo-1257236742.cos.ap-beijing.myqcloud.com/demo.mp4" type="video/mp4" />
                           Your browser does not support the video tag.
                         </video>
                       ) : (
