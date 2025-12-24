@@ -13,7 +13,7 @@ export function Hero() {
   const [isMuted, setIsMuted] = useState(true)
 
   return (
-    <section className="relative pt-12 md:pt-20 pb-20 overflow-hidden">
+    <section className="relative pt-20 md:pt-24 pb-20 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950 to-black" />
       <div className="absolute inset-0 bg-[url('/og-img.png')] bg-cover bg-center opacity-5" />
       <div className="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(0deg,rgba(255,255,255,1),rgba(255,255,255,0.6))] opacity-20" />
