@@ -1,0 +1,67 @@
+import type { PricingPlan } from './types'
+
+export const PRICING_PLANS: PricingPlan[] = [
+  {
+    id: 1,
+    name: 'Starter',
+    credits: 100,
+    monthlyPrice: 29.9,
+    yearlyPrice: 24.9,
+    features: [
+      '100 credits',
+      'Text to video',
+      'Image to video',
+      'Standard quality',
+      'Email support',
+    ],
+  },
+  {
+    id: 2,
+    name: 'Pro',
+    credits: 480,
+    monthlyPrice: 49.9,
+    yearlyPrice: 41.6,
+    features: [
+      '480 credits',
+      'Text to video',
+      'Image to video',
+      'HD quality (720P)',
+      'Priority support',
+      'No watermark',
+    ],
+    popular: true,
+  },
+  {
+    id: 3,
+    name: 'Business',
+    credits: 990,
+    monthlyPrice: 99.9,
+    yearlyPrice: 83.3,
+    features: [
+      '990 credits',
+      'Text to video',
+      'Image to video',
+      'Full HD (1080P)',
+      'Dedicated support',
+      'No watermark',
+      'API access',
+    ],
+  },
+  {
+    id: 4,
+    name: 'Enterprise',
+    credits: 2406,
+    monthlyPrice: 199.9,
+    yearlyPrice: 166.6,
+    features: [
+      '2406 credits',
+      'Text to video',
+      'Image to video',
+      'Full HD (1080P)',
+      '24/7 support',
+      'No watermark',
+      'API access',
+      'Custom integrations',
+    ],
+  },
+]
