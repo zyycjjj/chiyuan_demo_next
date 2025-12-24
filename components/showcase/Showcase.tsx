@@ -7,7 +7,7 @@ import { Section } from '../ui/Section'
 import { Container } from '../ui/Container'
 
 export function Showcase() {
-  const [mutedStates, setMutedStates] = useState([true, true, true])
+  const [mutedStates, setMutedStates] = useState([true, true, true, true, true, true])
 
   const toggleMute = (index: number) => {
     setMutedStates(prev => {
@@ -21,20 +21,38 @@ export function Showcase() {
     {
       id: 1,
       video: '/demo1.mp4',
-      title: 'Cinematic Product Reel',
-      description: 'Professional product showcase with synchronized audio'
+      title: 'Brands & eCommerce',
+      description: 'Product highlights, launch teasers, and how-it-works clips'
     },
     {
       id: 2,
       video: '/demo2.mp4',
-      title: 'Brand Story Video',
-      description: 'Engaging brand narrative with consistent characters'
+      title: 'Social & Creators',
+      description: 'Daily Shorts/Reels with a cohesive story world'
     },
     {
       id: 3,
       video: '/demo3.mp4',
-      title: 'Social Media Content',
-      description: 'Eye-catching clips optimized for social platforms'
+      title: 'Education & Training',
+      description: 'Course explainers, lab simulations, and process walk-throughs'
+    },
+    {
+      id: 4,
+      video: '/demo1.mp4',
+      title: 'Product & Engineering',
+      description: 'App flows, hardware demos, and concept simulations'
+    },
+    {
+      id: 5,
+      video: '/demo2.mp4',
+      title: 'Pre-viz for film',
+      description: 'Shot exploration, lighting tests, and camera planning'
+    },
+    {
+      id: 6,
+      video: '/demo3.mp4',
+      title: 'Cinematic Product Reel',
+      description: 'Professional product showcase with synchronized audio'
     }
   ]
 
